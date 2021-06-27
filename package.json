@@ -39,5 +39,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.7",
+    "plop": "^2.7.4"
   }
 }
