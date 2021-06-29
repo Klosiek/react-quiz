@@ -1,5 +1,5 @@
 import { RootState } from "store";
-import { getFirebase } from "react-redux-firebase";
+import { getFirebase, isEmpty, isLoaded } from "react-redux-firebase";
 import * as SharedTypes from "shared/types";
 
 // Selectors
@@ -13,6 +13,12 @@ export const selectUserProfileById =
 
 export const selectCurrentUserProfile = (state: RootState) =>
   state.firebase.profile;
+
+export const selectLoggedIn = (state: RootState) => {
+  return (
+    !isEmpty(state.firebase.auth) && isLoaded(state.firebase.auth.providerData)
+  );
+};
 
 // Actions
 
