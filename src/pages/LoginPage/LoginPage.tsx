@@ -83,7 +83,7 @@ const LoginPage = () => {
             label="Email adress"
             size="small"
             required
-            helperText={errors.email}
+            helperText={errors.email ? errors.email : " "}
             onChange={onChange}
           />
           <SharedStyles.Input
@@ -93,7 +93,7 @@ const LoginPage = () => {
             label="Password"
             size="small"
             required
-            helperText={errors.password}
+            helperText={errors.password ? errors.password : " "}
             onChange={onChange}
           />
           <Button
