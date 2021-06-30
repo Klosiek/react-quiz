@@ -2,19 +2,10 @@ import * as Types from "./LoginPage.types";
 import * as Styles from "./LoginPage.styles";
 import { loginWithEmail, loginWithGithub, loginWithGoogle } from "store/user";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  Container,
-  Paper,
-  Typography,
-  Button,
-  Divider,
-} from "@material-ui/core";
-import MuiAlert from "@material-ui/lab/Alert";
+import { Typography, Button, Divider } from "@material-ui/core";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useState } from "react";
 import ParseFirebaseErrors from "shared/ParseFirebaseErrors";
-import { useHistory } from "react-router-dom";
 import { RoutesEnum } from "shared/enums";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -24,9 +15,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required("Required"),
 });
 
-const LoginPage = ({}: Types.Props) => {
-  const history = useHistory();
-
+const LoginPage = () => {
   const {
     setFieldValue,
     errors,
@@ -124,11 +113,3 @@ const LoginPage = ({}: Types.Props) => {
 };
 
 export default LoginPage;
-
-{
-  /* <Styles.InfoContaier>
-If you are getting ready for interview in react.js this quiz might be
-helpfull for you! Play on your own or challenge your friends. Have fun
-and learn at the same time. Godspeed!
-</Styles.InfoContaier> */
-}
