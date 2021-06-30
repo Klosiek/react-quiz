@@ -1,5 +1,5 @@
-import * as Types from "./LoginPage.types";
 import * as Styles from "./LoginPage.styles";
+import * as SharedStyles from "shared/styles";
 import { loginWithEmail, loginWithGithub, loginWithGoogle } from "store/user";
 import toast, { Toaster } from "react-hot-toast";
 import { Typography, Button, Divider } from "@material-ui/core";
@@ -59,24 +59,24 @@ const LoginPage = () => {
       </Styles.HeaderContainer>
       <Styles.FormContainer elevation={3}>
         <Styles.ProvidersContainer>
-          <Styles.ProviderButton
+          <SharedStyles.ProviderButton
             variant="outlined"
             onClick={() => loginWithGithub()}
           >
             <FaGithub size={20} />
             Sign in with Github
-          </Styles.ProviderButton>
-          <Styles.ProviderButton
+          </SharedStyles.ProviderButton>
+          <SharedStyles.ProviderButton
             variant="outlined"
             onClick={() => loginWithGoogle()}
           >
             <FcGoogle size={20} />
             Sign in with Google
-          </Styles.ProviderButton>
+          </SharedStyles.ProviderButton>
         </Styles.ProvidersContainer>
         <Divider />
         <Styles.Form>
-          <Styles.Input
+          <SharedStyles.Input
             variant="outlined"
             id="email"
             name="email"
@@ -86,7 +86,7 @@ const LoginPage = () => {
             helperText={errors.email}
             onChange={onChange}
           />
-          <Styles.Input
+          <SharedStyles.Input
             variant="outlined"
             id="password"
             name="password"

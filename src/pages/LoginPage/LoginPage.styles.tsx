@@ -1,4 +1,4 @@
-import { Button, Container, Paper, TextField } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import styled from "styled-components";
 
 export const LoginContainer = styled.div`
@@ -42,20 +42,6 @@ export const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-export const Input = styled(TextField)`
-  /* width: 200px; */
-  .MuiFormHelperText-root {
-    color: red;
-  }
-`;
-
-export const ProviderButton = styled(Button)<{ color?: string }>`
-  display: flex;
-  justify-content: space-around;
-  svg {
-    color: ${({ color }) => color};
-  }
 `;
 
 export const FormContainer = styled(Paper)`
