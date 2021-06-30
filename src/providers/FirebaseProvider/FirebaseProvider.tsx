@@ -10,7 +10,6 @@ const FirebaseProvider = ({ children }: Types.Props) => {
       .auth()
       .onAuthStateChanged((user) => {
         if (!user) logout();
-        else console.log(user);
       });
 
     return () => unsubscribe();

@@ -22,8 +22,16 @@ export const selectLoggedIn = (state: RootState) => {
 
 // Actions
 
-export const login = async (email: string, password: string) => {
+export const loginWithEmail = async (email: string, password: string) => {
   await getFirebase().login({ email, password });
+};
+
+export const loginWithGithub = async () => {
+  await getFirebase().login({ provider: "github", type: "popup" });
+};
+
+export const loginWithGoogle = async () => {
+  await getFirebase().login({ provider: "google", type: "popup" });
 };
 
 export const logout = () => {
