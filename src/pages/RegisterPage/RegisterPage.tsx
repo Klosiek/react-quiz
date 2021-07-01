@@ -83,6 +83,7 @@ const RegisterPage = () => {
           name="email"
           label="Email address"
           size="small"
+          autoFocus
           helperText={errors.email ? errors.email : " "}
           onChange={onChange}
         />

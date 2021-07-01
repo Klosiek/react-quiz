@@ -6,5 +6,6 @@ export interface Props {
   helperText?: string;
   type?: string;
   required?: boolean;
+  autoFocus?: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }

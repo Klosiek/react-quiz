@@ -12,21 +12,23 @@ const Input = ({
   helperText,
   type,
   required,
+  autoFocus,
   onChange,
 }: Types.Props) => {
-  const [isVisible, setVisible] = useState(false);
+  const [isVisible, setVisible] = useState<boolean>("password" === type);
   return (
     <Styles.Input
       id={id}
       name={name}
       label={label}
-      type={type}
+      type={isVisible ? "password" : "text"}
       size={size}
       helperText={helperText}
       onChange={onChange}
       required={required}
+      autoFocus={autoFocus}
       InputProps={{
-        startAdornment: type === "password" && (
+        endAdornment: type === "password" && (
           <InputAdornment position="end">
             <IconButton
               aria-label="toggle password visibility"

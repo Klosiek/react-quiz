@@ -96,6 +96,7 @@ const LoginPage = () => {
             label="Email adress"
             size="small"
             required
+            autoFocus
             helperText={errors.email ? errors.email : " "}
             onChange={onChange}
           />
