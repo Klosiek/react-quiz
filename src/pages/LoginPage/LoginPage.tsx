@@ -13,7 +13,8 @@ import ParseFirebaseErrors from "shared/ParseFirebaseErrors";
 import { RoutesEnum } from "shared/enums";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
+import Input from "components/Input";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("The email is incorrect").required("Required"),
@@ -21,6 +22,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
+  const history = useHistory();
   const {
     setFieldValue,
     errors,
@@ -37,8 +39,13 @@ const LoginPage = () => {
     onSubmit: async (values) => {
       validateForm();
       if (isValid) {
-        loginWithEmail(values.email, values.password).catch((err) => {
-          toast.error(ParseFirebaseErrors(err), { position: "bottom-center" });
+        toast.promise(loginWithEmail(values.email, values.password), {
+          loading: "Loading",
+          success: () => {
+            history.push(RoutesEnum.HomePage);
+            return "Logged in";
+          },
+          error: (err) => `This just happened: ${ParseFirebaseErrors(err)}`,
         });
       }
     },
@@ -83,8 +90,7 @@ const LoginPage = () => {
         </Styles.ProvidersContainer>
         <Divider />
         <Styles.Form>
-          <SharedStyles.Input
-            variant="outlined"
+          <Input
             id="email"
             name="email"
             label="Email adress"
@@ -93,11 +99,11 @@ const LoginPage = () => {
             helperText={errors.email ? errors.email : " "}
             onChange={onChange}
           />
-          <SharedStyles.Input
-            variant="outlined"
+          <Input
             id="password"
             name="password"
             label="Password"
+            type="password"
             size="small"
             required
             helperText={errors.password ? errors.password : " "}

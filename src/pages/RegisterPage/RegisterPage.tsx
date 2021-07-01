@@ -1,5 +1,4 @@
 import * as Styles from "./RegisterPage.styles";
-import * as SharedStyles from "shared/styles";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import {
@@ -10,7 +9,11 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { RoutesEnum } from "shared/enums";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { registerWithEmail } from "store/profile";
+import ParseFirebaseErrors from "shared/ParseFirebaseErrors";
+import Input from "components/Input";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -26,6 +29,7 @@ const validationSchema = Yup.object().shape({
 
 const RegisterPage = () => {
   const matches = useMediaQuery("(min-width:600px)");
+  const history = useHistory();
 
   const {
     setFieldValue,
@@ -44,6 +48,14 @@ const RegisterPage = () => {
     onSubmit: async (values) => {
       validateForm();
       if (isValid) {
+        toast.promise(registerWithEmail(values.email, values.password), {
+          loading: "Loading",
+          success: () => {
+            history.push(RoutesEnum.Login);
+            return "Register sucessfull! Please confirm your email before loggin in";
+          },
+          error: (err) => `This just happened: ${ParseFirebaseErrors(err)}`,
+        });
       }
     },
   });
@@ -66,29 +78,28 @@ const RegisterPage = () => {
             Enter your info to get started
           </Typography>
         </Styles.HeaderContainer>
-        <SharedStyles.Input
+        <Input
           id="email"
           name="email"
           label="Email address"
-          variant="outlined"
           size="small"
           helperText={errors.email ? errors.email : " "}
           onChange={onChange}
         />
-        <SharedStyles.Input
+        <Input
           id="password"
           name="password"
           label="Password"
-          variant="outlined"
+          type="password"
           size="small"
           helperText={errors.password ? errors.password : " "}
           onChange={onChange}
         />
-        <SharedStyles.Input
+        <Input
           id="repeatPassword"
           name="repeatPassword"
           label="Repeat password"
-          variant="outlined"
+          type="password"
           size="small"
           helperText={errors.repeatPassword ? errors.repeatPassword : " "}
           onChange={onChange}
@@ -113,8 +124,9 @@ const RegisterPage = () => {
           <Typography variant="h5">
             If you are getting ready for interview in React.js this quiz might
             be helpfull for you! Play on your own or challenge others. Have fun
-            and learn at the same time. Godspeed!
+            and learn at the same time.
           </Typography>
+          <Typography variant="h4">Godspeed!</Typography>
           <Styles.AvatarContainer>
             <Avatar
               alt="Klosiek"
@@ -130,6 +142,7 @@ const RegisterPage = () => {
           </Styles.AvatarContainer>
         </Styles.InfoContainer>
       )}
+      <Toaster />
     </Styles.RegisterContainer>
   );
 };
