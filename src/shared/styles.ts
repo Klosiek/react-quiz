@@ -8,10 +8,7 @@ export const Input = styled(TextField)`
   }
 `;
 
-export const ProviderButton = styled(Button)<{ color?: string }>`
+export const ProviderButton = styled(Button)`
   display: flex;
-  justify-content: space-around;
-  svg {
-    color: ${({ color }) => color};
-  }
+  justify-content: space-evenly;
 `;
