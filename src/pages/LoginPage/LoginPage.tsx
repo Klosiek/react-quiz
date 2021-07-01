@@ -1,14 +1,19 @@
 import * as Styles from "./LoginPage.styles";
 import * as SharedStyles from "shared/styles";
-import { loginWithEmail, loginWithGithub, loginWithGoogle } from "store/user";
+import {
+  loginWithEmail,
+  loginWithGithub,
+  loginWithGoogle,
+} from "store/profile";
 import toast, { Toaster } from "react-hot-toast";
-import { Typography, Button, Divider } from "@material-ui/core";
+import { Typography, Button, Divider, Link } from "@material-ui/core";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import ParseFirebaseErrors from "shared/ParseFirebaseErrors";
 import { RoutesEnum } from "shared/enums";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { Link as RouterLink } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("The email is incorrect").required("Required"),
@@ -54,7 +59,9 @@ const LoginPage = () => {
         <Typography variant="h4">Sign in to your account</Typography>
         <Typography variant="h6" gutterBottom>
           Don't have an account?{" "}
-          <a href={RoutesEnum.Register}>Start free here!</a>
+          <Link component={RouterLink} to={RoutesEnum.Register}>
+            Start free here!
+          </Link>
         </Typography>
       </Styles.HeaderContainer>
       <Styles.FormContainer elevation={3}>

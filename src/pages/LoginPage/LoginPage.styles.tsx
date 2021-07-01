@@ -50,6 +50,8 @@ export const FormContainer = styled(Paper)`
   justify-content: space-between;
   padding: 40px;
   height: 450px;
+  max-width: 400px;
+  width: 100%;
 `;
 
 export const InfoContaier = styled(Paper)``;
