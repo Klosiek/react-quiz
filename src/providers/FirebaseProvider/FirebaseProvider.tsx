@@ -2,7 +2,7 @@ import * as Types from "./FirebaseProvider.types";
 import { getFirebase, ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { rrfProps } from "store";
 import { useEffect } from "react";
-import { logout } from "store/user";
+import { logout } from "store/profile";
 
 const FirebaseProvider = ({ children }: Types.Props) => {
   useEffect(() => {

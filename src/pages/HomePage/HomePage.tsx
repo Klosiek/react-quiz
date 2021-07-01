@@ -1,6 +1,10 @@
 import * as Types from "./HomePage.types";
 import * as Styles from "./HomePage.styles";
-import { logout, selectCurrentUserProfile, selectLoggedIn } from "store/user";
+import {
+  logout,
+  selectCurrentUserProfile,
+  selectLoggedIn,
+} from "store/profile";
 import { useSelector } from "react-redux";
 
 const HomePage = ({}: Types.Props) => {
