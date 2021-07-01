@@ -16,6 +16,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import Input from "components/Input";
 import { useSelector } from "react-redux";
+import DividerWithText from "components/DividerWithText";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("The email is incorrect").required("Required"),
@@ -89,7 +90,7 @@ const LoginPage = () => {
             Sign in with Google
           </SharedStyles.ProviderButton>
         </Styles.ProvidersContainer>
-        <Divider />
+        <DividerWithText>OR</DividerWithText>
         <Styles.Form>
           <Input
             id="email"
