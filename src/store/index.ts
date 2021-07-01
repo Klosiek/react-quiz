@@ -30,13 +30,13 @@ firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 
 const rrfConfig = {
-  userProfile: "users",
+  userProfile: "profiles",
   useFirestoreForProfile: true,
   // enableClaims: true,
 };
 
 export interface FirestoreSchema {
-  users: SharedTypes.Profile[];
+  profiles: SharedTypes.Profile[];
   games: SharedTypes.Game[];
 }
 
