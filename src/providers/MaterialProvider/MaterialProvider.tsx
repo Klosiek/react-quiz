@@ -6,6 +6,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
 
 const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#61dafb",
+    },
+  },
   typography: {
     button: {
       textTransform: "none",
