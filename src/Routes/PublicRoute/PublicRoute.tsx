@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Redirect, Route, RouteProps } from "react-router-dom";
 import { RoutesEnum } from "shared/enums";
-import { selectLoggedIn } from "store/user";
+import { selectLoggedIn } from "store/profile";
 
 const PublicRoute = (props: RouteProps) => {
   const isLoggedIn = useSelector(selectLoggedIn);
