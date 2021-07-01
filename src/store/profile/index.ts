@@ -1,7 +1,6 @@
 import { RootState } from "store";
 import { getFirebase, isEmpty, isLoaded } from "react-redux-firebase";
 import * as SharedTypes from "shared/types";
-import { getFirestore } from "redux-firestore";
 
 // Selectors
 

@@ -1,13 +1,9 @@
-import * as Types from "./HomePage.types";
-import * as Styles from "./HomePage.styles";
-import {
-  logout,
-  selectCurrentUserProfile,
-  selectLoggedIn,
-} from "store/profile";
+// import * as Types from "./HomePage.types";
+// import * as Styles from "./HomePage.styles";
+import { logout, selectLoggedIn } from "store/profile";
 import { useSelector } from "react-redux";
 
-const HomePage = ({}: Types.Props) => {
+const HomePage = () => {
   const user = useSelector(selectLoggedIn);
   return (
     <div
