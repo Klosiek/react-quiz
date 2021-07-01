@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
 import { Redirect, Route, RouteProps } from "react-router-dom";
 import { RoutesEnum } from "shared/enums";
-import { selectLoggedIn } from "store/profile";
+import { selectIsLoggedInAndIsEmailVerified } from "store/profile";
 
 const PublicRoute = (props: RouteProps) => {
-  const isLoggedIn = useSelector(selectLoggedIn);
-  console.log(isLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedInAndIsEmailVerified);
 
   return !isLoggedIn ? (
     <Route {...props} />

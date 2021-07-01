@@ -1,5 +1,10 @@
 import { RootState } from "store";
-import { getFirebase, isEmpty, isLoaded } from "react-redux-firebase";
+import {
+  authIsReady,
+  getFirebase,
+  isEmpty,
+  isLoaded,
+} from "react-redux-firebase";
 import * as SharedTypes from "shared/types";
 
 // Selectors
@@ -18,6 +23,17 @@ export const selectCurrentUserProfile = (state: RootState) =>
 export const selectLoggedIn = (state: RootState) => {
   return (
     !isEmpty(state.firebase.auth) && isLoaded(state.firebase.auth.providerData)
+  );
+};
+
+export const selectIsLoggedInAndIsEmailVerified = (state: RootState) => {
+  return (
+    selectLoggedIn(state) &&
+    (state.firebase.auth.providerData?.some(
+      (provider) =>
+        provider.providerId === "github" || provider.providerId === "google"
+    ) ||
+      state.firebase.auth.emailVerified)
   );
 };
 

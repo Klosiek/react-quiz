@@ -4,17 +4,18 @@ import {
   loginWithEmail,
   loginWithGithub,
   loginWithGoogle,
+  selectIsLoggedInAndIsEmailVerified,
 } from "store/profile";
 import toast, { Toaster } from "react-hot-toast";
 import { Typography, Button, Divider, Link } from "@material-ui/core";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import ParseFirebaseErrors from "shared/ParseFirebaseErrors";
 import { RoutesEnum } from "shared/enums";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import Input from "components/Input";
+import { useSelector } from "react-redux";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("The email is incorrect").required("Required"),
@@ -22,6 +23,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
+  const isEmailVerified = useSelector(selectIsLoggedInAndIsEmailVerified);
   const history = useHistory();
   const {
     setFieldValue,
@@ -39,14 +41,13 @@ const LoginPage = () => {
     onSubmit: async (values) => {
       validateForm();
       if (isValid) {
-        toast.promise(loginWithEmail(values.email, values.password), {
-          loading: "Loading",
-          success: () => {
-            history.push(RoutesEnum.HomePage);
-            return "Logged in";
-          },
-          error: (err) => `This just happened: ${ParseFirebaseErrors(err)}`,
-        });
+        loginWithEmail(values.email, values.password)
+          .then(() => {
+            isEmailVerified
+              ? toast.success("Logged in")
+              : toast.error("Confirm your adress email before loggin in");
+          })
+          .catch((err) => toast.error(`${err}`));
       }
     },
   });

@@ -12,7 +12,6 @@ import { RoutesEnum } from "shared/enums";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { registerWithEmail } from "store/profile";
-import ParseFirebaseErrors from "shared/ParseFirebaseErrors";
 import Input from "components/Input";
 
 const validationSchema = Yup.object().shape({
@@ -54,7 +53,7 @@ const RegisterPage = () => {
             history.push(RoutesEnum.Login);
             return "Register sucessfull! Please confirm your email before loggin in";
           },
-          error: (err) => `This just happened: ${ParseFirebaseErrors(err)}`,
+          error: (err) => `${err}`,
         });
       }
     },
