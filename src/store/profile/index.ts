@@ -11,6 +11,9 @@ import * as SharedTypes from "shared/types";
 
 export const selectUser = (state: RootState) => state.firebase.auth;
 
+export const selectIsAuthLoaded = (state: RootState) =>
+  isLoaded(state.firebase.auth) && isLoaded(state.firebase.profile);
+
 export const selectUserProfileById =
   (userId: string) =>
   ({ firestore: { data } }: RootState) =>
