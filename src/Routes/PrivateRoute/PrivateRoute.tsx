@@ -1,4 +1,5 @@
-import Navbar from "components/NavBar";
+import HomeAppBar from "components/HomeAppBar";
+import NavBar from "components/NavBar";
 import {
   Attributes,
   ComponentClass,
@@ -18,13 +19,22 @@ const PrivateRoute = (props: RouteProps) => {
     <Route
       {...rest}
       render={(routeProps) => (
-        <>
-          <Navbar />
-          {createElement(
-            component as string | FunctionComponent | ComponentClass,
-            routeProps as Attributes
-          )}
-        </>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <HomeAppBar />
+          <div style={{ display: "flex", height: "100%" }}>
+            <NavBar />
+            {createElement(
+              component as string | FunctionComponent | ComponentClass,
+              routeProps as Attributes
+            )}
+          </div>
+        </div>
       )}
     />
   ) : (

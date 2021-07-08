@@ -1,5 +1,8 @@
 export interface Profile {
-  profileId: string;
+  avatarUrl?: string;
+  displayName?: string;
+  email: string;
+  providerData: [];
   experience: number;
 }
 

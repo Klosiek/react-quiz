@@ -7,13 +7,13 @@ import {
   selectIsLoggedInAndIsEmailVerified,
 } from "store/profile";
 import toast, { Toaster } from "react-hot-toast";
-import { Typography, Button, Divider, Link } from "@material-ui/core";
+import { Typography, Button, Link } from "@material-ui/core";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { RoutesEnum } from "shared/enums";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import Input from "components/Input";
 import { useSelector } from "react-redux";
 import DividerWithText from "components/DividerWithText";
@@ -25,7 +25,6 @@ const validationSchema = Yup.object().shape({
 
 const LoginPage = () => {
   const isEmailVerified = useSelector(selectIsLoggedInAndIsEmailVerified);
-  const history = useHistory();
   const {
     setFieldValue,
     errors,

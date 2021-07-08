@@ -1,7 +1,9 @@
-import { Toolbar } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import styled from "styled-components";
 
-export const StyledToolbar = styled(Toolbar)`
+export const Container = styled(Paper)`
+  width: 200px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* padding: 12px; */
 `;

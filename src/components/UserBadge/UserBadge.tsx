@@ -1,52 +1,34 @@
-import * as Types from "./UserBadge.types";
+// import * as Types from "./UserBadge.types";
 import * as Styles from "./UserBadge.styles";
 import { Avatar, Badge } from "@material-ui/core";
-import { selectUser } from "store/profile";
+import { selectCurrentUserProfile } from "store/profile";
 import { useSelector } from "react-redux";
 import gravatar from "gravatar";
 
 const UserBadge = () => {
-  const user = useSelector(selectUser);
+  const user = useSelector(selectCurrentUserProfile);
   return (
-    <div style={{ display: "flex" }}>
+    <Styles.Container>
       <Badge
-        // variant="dot"
         overlap="circle"
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right",
         }}
         badgeContent={
-          <span
-            style={{
-              width: "16px",
-              height: "16px",
-              padding: "4px",
-              backgroundColor: "white",
-              color: "black",
-              borderRadius: "50%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            2
-          </span>
+          <Styles.ExperienceIcon>
+            {user.experience ? Math.floor(user.experience / 1000) : 0}
+          </Styles.ExperienceIcon>
         }
       >
-        <Avatar
-          alt={user.email ? user.email : "U"}
-          src={user.email ? gravatar.url(user.email) : ""}
-        />
+        <Avatar alt={user.email} src={gravatar.url(user.email)} />
       </Badge>
 
-      <div
-        style={{ marginLeft: "5px", display: "flex", flexDirection: "column" }}
-      >
-        <div style={{ fontWeight: 800 }}>Username</div>
+      <Styles.UserInfoContainer>
+        <Styles.DisplayName>{user.displayName}</Styles.DisplayName>
         {user.email}
-      </div>
-    </div>
+      </Styles.UserInfoContainer>
+    </Styles.Container>
   );
 };
 

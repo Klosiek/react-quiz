@@ -41,7 +41,7 @@ export interface FirestoreSchema {
 }
 
 export interface RootState {
-  firebase: FirebaseReducer.Reducer<any>;
+  firebase: FirebaseReducer.Reducer<SharedTypes.Profile>;
   firestore: FirestoreReducer.Reducer<FirestoreSchema>;
 }
 

@@ -29,10 +29,9 @@ const Input = ({
       autoFocus={autoFocus}
       InputProps={{
         endAdornment: type === "password" && (
-          <InputAdornment position="end">
+          <InputAdornment onClick={() => setVisible(!isVisible)} position="end">
             <IconButton
               aria-label="toggle password visibility"
-              onClick={() => setVisible(!isVisible)}
               onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) =>
                 event.preventDefault()
               }
