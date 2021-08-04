@@ -5,14 +5,16 @@ import {
   ComponentClass,
   createElement,
   FunctionComponent,
+  useState,
 } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route, RouteProps } from "react-router-dom";
-import { RoutesEnum } from "shared/enums";
+import { PanelEnum, RoutesEnum } from "shared/enums";
 import { selectIsLoggedInAndIsEmailVerified } from "store/profile";
 
 const PrivateRoute = (props: RouteProps) => {
   const isLoggedIn = useSelector(selectIsLoggedInAndIsEmailVerified);
+  const [view, setView] = useState<PanelEnum>(PanelEnum.Dashboard);
   const { component, ...rest } = props;
 
   return isLoggedIn ? (
@@ -28,10 +30,10 @@ const PrivateRoute = (props: RouteProps) => {
         >
           <HomeAppBar />
           <div style={{ display: "flex", height: "100%" }}>
-            <NavBar />
+            <NavBar view={view} setView={setView} />
             {createElement(
               component as string | FunctionComponent | ComponentClass,
-              routeProps as Attributes
+              { routeProps, view } as Attributes
             )}
           </div>
         </div>

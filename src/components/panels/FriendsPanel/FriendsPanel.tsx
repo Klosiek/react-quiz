@@ -1,8 +1,5 @@
-import * as Types from "./FriendsPanel.types";
-import * as Styles from "./FriendsPanel.styles";
-
-const FriendsPanel = ({}: Types.Props) => {
-  return <></>;
+const FriendsPanel = () => {
+  return <>Work in progress...</>;
 };
 
 export default FriendsPanel;

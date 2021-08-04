@@ -3,3 +3,10 @@ export enum RoutesEnum {
   Login = "/login",
   Register = "/register",
 }
+
+export enum PanelEnum {
+  Dashboard,
+  Game,
+  Friends,
+  Settings,
+}

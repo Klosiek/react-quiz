@@ -1,8 +1,5 @@
-import * as Types from "./SettingsPanel.types";
-import * as Styles from "./SettingsPanel.styles";
-
-const SettingsPanel = ({}: Types.Props) => {
-  return <></>;
+const SettingsPanel = () => {
+  return <>Work in progress...</>;
 };
 
 export default SettingsPanel;

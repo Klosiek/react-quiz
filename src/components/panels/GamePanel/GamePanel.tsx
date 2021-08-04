@@ -1,8 +1,5 @@
-import * as Types from "./GamePanel.types";
-import * as Styles from "./GamePanel.styles";
-
-const GamePanel = ({}: Types.Props) => {
-  return <></>;
+const GamePanel = () => {
+  return <>Work in progress...</>;
 };
 
 export default GamePanel;
